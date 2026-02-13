@@ -1,154 +1,291 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Renda Extra Pelo Celular</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #0f0f0f;
-      color: #ffffff;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOD SAFE</title>
 
-    header {
-      background: linear-gradient(90deg, #00c853, #009624);
-      padding: 30px;
-      text-align: center;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial;}
 
-    header h1 {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
+body{
+  background:linear-gradient(135deg,#000,#1a0000,#000);
+  background-size:300% 300%;
+  animation:bg 8s infinite alternate;
+  color:white;
+}
 
-    header p {
-      font-size: 16px;
-    }
+@keyframes bg{
+  0%{background-position:0% 50%;}
+  100%{background-position:100% 50%;}
+}
 
-    section {
-      padding: 25px;
-    }
+/* LOADING INICIAL */
+#loadingInicial{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:22px;
+  z-index:999;
+}
 
-    .box {
-      background: #1c1c1c;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
+/* LOGIN */
+#login{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:#111;
+  padding:30px;
+  border-radius:15px;
+  width:280px;
+  text-align:center;
+  box-shadow:0 0 20px red;
+}
 
-    .box h2 {
-      color: #00e676;
-      font-size: 22px;
-      margin-bottom: 10px;
-    }
+input{
+  width:100%;
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  margin-top:10px;
+}
 
-    .ganhos {
-      background: #121212;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
+button{
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  border:none;
+  border-radius:8px;
+  background:red;
+  color:white;
+  font-weight:bold;
+}
 
-    .ganhos strong {
-      color: #00e676;
-    }
+/* PAINEL */
+#painel{display:none;}
 
-    .btn {
-      display: block;
-      text-align: center;
-      background: #00c853;
-      color: #000;
-      padding: 18px;
-      font-size: 18px;
-      font-weight: bold;
-      border-radius: 10px;
-      text-decoration: none;
-      margin-top: 15px;
-      animation: pulse 1.5s infinite;
-    }
+.topo{
+  text-align:center;
+  padding:15px;
+  font-size:22px;
+  text-shadow:0 0 10px red;
+}
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
+/* SIDEBAR */
+.sidebar{
+  position:fixed;
+  left:0;
+  top:0;
+  width:90px;
+  height:100%;
+  background:#080808;
+  padding-top:80px;
+}
 
-    footer {
-      background: #000;
-      padding: 15px;
-      text-align: center;
-      font-size: 12px;
-      color: #aaa;
-    }
-  </style>
+.tab{
+  padding:15px;
+  text-align:center;
+  cursor:pointer;
+  border-bottom:1px solid #222;
+}
+
+.tab:hover{background:#111;}
+
+.aimGlow{
+  animation:neon 1s infinite alternate;
+}
+
+@keyframes neon{
+  from{box-shadow:0 0 5px red;}
+  to{box-shadow:0 0 15px red;}
+}
+
+.content{
+  margin-left:100px;
+  padding:15px;
+}
+
+.card{
+  background:#111;
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.switch{
+  width:50px;
+  height:25px;
+  background:#333;
+  border-radius:20px;
+  position:relative;
+  cursor:pointer;
+}
+
+.switch::after{
+  content:"";
+  width:21px;
+  height:21px;
+  background:white;
+  position:absolute;
+  top:2px;
+  left:2px;
+  border-radius:50%;
+  transition:.3s;
+}
+
+.switch.on{background:red;}
+.switch.on::after{left:27px;}
+
+.secao{display:none;}
+
+#contador{
+  text-align:center;
+  margin-bottom:10px;
+  color:#ff4444;
+}
+
+/* CROSSHAIR VISUAL */
+#crosshair{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:25px;
+  height:25px;
+  border:2px solid red;
+  border-radius:50%;
+  display:none;
+}
+
+/* LOADING JOGO */
+#loadingJogo{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:black;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  font-size:22px;
+}
+</style>
 </head>
 
 <body>
 
-<header>
-  <h1>💰 Renda Extra Pelo Celular</h1>
-  <p>Aprenda como pessoas comuns estão ganhando dinheiro pela internet</p>
-</header>
+<div id="loadingInicial">Carregando painel...</div>
 
-<section>
+<div id="login">
+  <h2>MOD SAFE</h2>
+  <input type="password" id="senha">
+  <button onclick="verSenha()">Ver senha</button>
+  <button onclick="entrar()">Entrar</button>
+  <div id="erro"></div>
+</div>
 
-  <div class="box">
-    <h2>📘 O que você vai aprender</h2>
-    <p>✔ Como começar do zero</p>
-    <p>✔ Trabalhar apenas com celular</p>
-    <p>✔ Estratégias simples e testadas</p>
-    <p>✔ Métodos usados por iniciantes</p>
+<div id="painel">
+
+<div class="topo">MOD SAFE PANEL</div>
+
+<div class="sidebar">
+  <div class="tab aimGlow" onclick="abrir('aim')">AIM</div>
+  <div class="tab" onclick="abrir('visual')">VISUAL</div>
+  <div class="tab" onclick="abrir('config')">CONFIG</div>
+</div>
+
+<div class="content">
+
+<div id="contador">Funções ativas: 0</div>
+
+<div id="aim" class="secao">
+  <div class="card">Auto-aim <div class="switch" onclick="toggle(this,'aim')"></div></div>
+  <div class="card">No recoil <div class="switch" onclick="toggle(this)"></div></div>
+  <div class="card">Speed hack <div class="switch" onclick="toggle(this)"></div></div>
+  <div class="card">God mode <div class="switch" onclick="toggle(this)"></div></div>
+  <div class="card">Teleport <div class="switch" onclick="toggle(this)"></div></div>
+</div>
+
+<div id="visual" class="secao">
+  <div class="card">Wallhack <div class="switch" onclick="toggle(this)"></div></div>
+  <div class="card">Radar hack <div class="switch" onclick="toggle(this)"></div></div>
+  <div class="card">Mod de dano <div class="switch" onclick="toggle(this)"></div></div>
+  <div class="card">Munição infinita <div class="switch" onclick="toggle(this)"></div></div>
+  <div class="card">Anti-ban falso <div class="switch" onclick="toggle(this)"></div></div>
+</div>
+
+<div id="config" class="secao">
+  <div class="card">
+    Sensibilidade
+    <input type="range" min="1" max="200">
   </div>
+  <button onclick="abrirJogo()">ENTRAR NO JOGO</button>
+</div>
 
-  <div class="box">
-    <h2>📊 Resultados de Alunos</h2>
+</div>
+</div>
 
-    <div class="ganhos">
-      👤 Marcos S. <br>
-      <strong>R$ 1.250,00</strong> no primeiro mês
-    </div>
+<div id="crosshair"></div>
+<div id="loadingJogo">Abrindo jogo...</div>
 
-    <div class="ganhos">
-      👤 Ana P. <br>
-      <strong>R$ 2.870,00</strong> trabalhando pelo celular
-    </div>
+<script>
+setTimeout(()=>{
+  loadingInicial.style.display="none";
+},2000);
 
-    <div class="ganhos">
-      👤 Lucas R. <br>
-      <strong>R$ 5.430,00</strong> após aplicar o método
-    </div>
+let senhaCorreta="bnsanttos";
+let ativos=0;
 
-    <div class="ganhos">
-      👤 Juliana M. <br>
-      <strong>R$ 980,00</strong> como renda extra
-    </div>
-  </div>
+function entrar(){
+  if(senha.value===senhaCorreta){
+    login.style.display="none";
+    painel.style.display="block";
+    abrir('aim');
+  }else{
+    erro.innerText="Senha incorreta";
+  }
+}
 
-  <div class="box">
-    <h2>🚀 Para quem é esse curso?</h2>
-    <p>✔ Quem quer renda extra</p>
-    <p>✔ Quem nunca vendeu nada</p>
-    <p>✔ Quem quer começar hoje</p>
-    <p>✔ Quem só tem celular e internet</p>
-  </div>
+function verSenha(){
+  senha.type=senha.type==="password"?"text":"password";
+}
 
-  <div class="box">
-    <h2>🔒 Acesso imediato</h2>
-    <p>Após o pagamento você recebe o acesso automaticamente.</p>
+function abrir(sec){
+  document.querySelectorAll(".secao")
+  .forEach(s=>s.style.display="none");
 
-    <a class="btn" href="https://pay.kiwify.com.br/yi7j3af">
-      👉 QUERO COMEÇAR AGORA
-    </a>
-  </div>
+  document.getElementById(sec).style.display="block";
+}
 
-</section>
+function toggle(el,tipo){
+  el.classList.toggle("on");
 
-<footer>
-  ⚠️ Aviso legal: Resultados variam de pessoa para pessoa. Este site não garante ganhos fixos.
-</footer>
+  if(el.classList.contains("on")) ativos++;
+  else ativos--;
+
+  contador.innerText="Funções ativas: "+ativos;
+
+  if(tipo==="aim"){
+    crosshair.style.display=
+      el.classList.contains("on")?"block":"none";
+  }
+}
+
+function abrirJogo(){
+  loadingJogo.style.display="flex";
+  setTimeout(()=>{
+    window.location.href=
+    "intent://#Intent;package=com.dts.freefireth;end";
+  },2000);
+}
+</script>
 
 </body>
-</html>
+  </html>
